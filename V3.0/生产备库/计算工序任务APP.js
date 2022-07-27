@@ -1,23 +1,15 @@
-//1.APP开始运行。KingFactory3.8启动时，APP自动启动。订阅生产备库结果资源选择（计划事对象的数据记录）及生产备库结果生产计划（计划事对象的数据记录），当某个“启动标识”成员=True时，APP开始运行
-//1.1.订阅生产备库结果资源选择（对象的数据记录）
-订阅生产备库结果资源选择数据记录;
-订阅生产备库结果生产计划数据记录;
-let thisUser = '系统管理员';
-let thisAPPName = '生产备库_计算工序任务APP';
-//1.2.运行计算工序任务APP。
-运行计算工序任务APP;
-//1.3.将当前数据记录的“启动标识”成员恢复为False
+//订阅生产备库结果资源选择（计划事对象的数据记录）及生产备库结果生产计划（计划事对象的数据记录），当某个“启动标识”成员=True时，APP开始运行
 
-//1.4.获取数据记录的“全局工序顺序号”成员值和"生产备库方案"成员值（中短期计划方案ID）
+//获取数据记录的“全局工序顺序号”成员值和"生产备库方案"成员值（中短期计划方案ID）
 let inputParameter = {};
 inputParameter.生产备库方案 = 获取的生产备库方案ID;
 inputParameter.全局工序顺序号 = 获取的全局工序顺序号;
 
 //2.查询是否存在“生产备库结果工序任务”计划事对象，若不存在则创建生产备库结果工序任务事对象,并设为生产备库结果资源选择事对象的子对象。
-CreateChildPlanThingWithGivenID(NameID thingDefinitionID, Int64 ID, String name, NameID parent);
+CreateChildPlanThingWithGivenID();
 
-//3.若“启动标识”成员=True的数据记录属于生产备库结果资源选择（计划事对象）则运行function1(); 若“启动标识”成员=True的数据记录属于生产备库结果生产计划（计划事对象）则运行function2()
-//3.1.若“启动标识”成员=True的数据记录属于生产备库结果资源选择（计划事对象）则运行function1()
+//若“启动标识”成员=True的数据记录属于生产备库结果资源选择（计划事对象）则运行function1(); 若“启动标识”成员=True的数据记录属于生产备库结果生产计划（计划事对象）则运行function2()
+//若“启动标识”成员=True的数据记录属于生产备库结果资源选择（计划事对象）则运行function1()
 if(("启动标识"成员=True的数据记录属于生产备库结果资源选择)and(生产备库结果资源选择数据记录的'是否首工序' = true)) {
     //3.1.1.依据当前生产备库方案ID查询生产备库结果资源选择记录。
     QueryPlanThingDataByTime();
@@ -65,7 +57,7 @@ if(("启动标识"成员=True的数据记录属于生产备库结果资源选择
         工序任务集合.push(当前工序任务集合[0]);
     }
     //3.1.5.输出工序任务集合至生产备库结果工序任务记录
-    AddPlanThingData(NameID thingID, String dataVersionName, String dataName, Int64 startTimeOffset, Int64 durationTime, Struct targetFieldValues);
+    AddPlanThingData();
 }
 
 //3.2.若“启动标识”成员=True的数据记录属于生产备库结果生产计划（计划事对象）则运行function2()
