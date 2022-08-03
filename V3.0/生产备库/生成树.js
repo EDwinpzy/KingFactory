@@ -9,7 +9,7 @@ var data = [
     // { id: 8, name: '2#除磁', parentId: 6 },
 ];
 /**
- * @type:
+ * @type:生成树数据结构
  * @description:
  * @param {*} list - 输入父子结构数据
  * @param {*} rootValue 根节点
