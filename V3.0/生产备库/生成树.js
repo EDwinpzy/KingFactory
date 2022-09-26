@@ -1,9 +1,9 @@
 var data = [
-    { id: 1, name: '负极工厂', parentId: 0 },
     { id: 2, name: '三偏心', parentId: 1 },
+    { id: 1, name: '负极工厂', parentId: 0 },
     { id: 3, name: '包装', parentId: 1 },
     { id: 4, name: '1#三偏心', parentId: 2 },
-    { id: 5, name: '2#三偏心', parentId: 4 },
+    { id: 5, name: '2#三偏心', parentId: 2 },
 ];
 /**
  * @type:生成树数据结构
@@ -25,6 +25,8 @@ function transListToTreeData(list, rootValue) {
     });
     return arr;
 }
-modules.exports = {
-    transListToTreeData,
-};
+var res = transListToTreeData(data, 1);
+console.log(res);
+// modules.exports = {
+//     transListToTreeData,
+// };
